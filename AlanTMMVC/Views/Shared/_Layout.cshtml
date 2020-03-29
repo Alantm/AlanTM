@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AlanTM</title>
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="header">
+        <nav class="header__nav">
+            <a class="header__link header__link--home" asp-area="" asp-page="/Index">Alan</a>
+            <a class="header__link header__link--alt" asp-area="" asp-page="/Art">Art?</a>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="">
+    </footer>
+
+    <script src="~/js/lazyload.js" xasync="" asp-append-version="true"></script>
+    <script src="~/js/site.js" defer="" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
