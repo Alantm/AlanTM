@@ -1,0 +1,10 @@
+﻿* + .projects {
+    margin-top: (50/16) * 1em;
+}
+
+.projects {
+    $root: &;
+    &__card-image {
+        display: block;
+    }
+}

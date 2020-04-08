@@ -6,5 +6,10 @@
 @import 'base/typography';
 
 @import 'layout/header';
+@import 'layout/column';
+@import 'layout/text';
+
+@import 'modules/bio';
+@import 'modules/projects';
 
 @import 'pages/index';

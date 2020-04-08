@@ -1,0 +1,29 @@
+﻿.bio {
+    .col-container {
+        flex-direction: column-reverse;
+
+        & > * + * {
+            margin-top: 0;
+        }
+
+        .col {
+            &--01 {
+                margin-top: (25/16) * 1em;
+            }
+        }
+    }
+
+    .resume-container {
+        &__buttons {
+            display: flex;
+            margin-top: (10/16) * 1em;
+            * {
+                flex: 1 1 auto;
+                & + * {
+                    margin-left: (10/16) * 1em;
+                }
+            }
+
+        }
+    }
+}

@@ -29,6 +29,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     background-color: $color-light;
     color: $color-dark;
+    font-size: $text-med;
 }
 
 ol, ul {
@@ -61,3 +62,20 @@ body > * {
     margin-right: auto;
     max-width: $body-max-width;
 }
+
+.button {
+    display: inline-block;
+    transition: all .2s linear;
+    font-weight: 900;
+    padding: ((10/16) * 1em) ((15/16) * 1em);
+    border: ((3/16) * 1em) solid $color-dark;
+    text-align: center;
+
+    &:hover, &:focus {
+        background-color: $color-dark;
+        color: $color-light;
+    }
+
+   
+}
+

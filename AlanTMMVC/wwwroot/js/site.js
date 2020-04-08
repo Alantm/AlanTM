@@ -44,6 +44,9 @@ function loadModule(ele, call) {
         if (call.toLowerCase() == 'bio') {
             loadBio(ele);
         }
+        if (call.toLowerCase() == 'projects') {
+            loadProjects(ele);
+        }
     }
 }
 
@@ -97,6 +100,26 @@ function loadBio(ele) {
     getAjax('/home/bio', function (data) {
         ele.innerHTML = data;
     });
+}
+
+function loadProjects(ele) {
+    getAjax('/home/projects', function (data) {
+        ele.innerHTML = data;
+    });
+}
+
+var cardIndexCounter = 0;
+var projectCardArr = ['Lefrak-Template', 'Lefrak-Template'];
+function loadProjectCards(ele) {
+    postAjax('/home/projectcards',
+        {
+            cardName:  projectCardArr[0].toLowerCase()
+        },
+        function (data) {
+            ele.innerHTML = data;
+            cardIndexCounter++;
+        }
+    );
 }
 
 (function () {

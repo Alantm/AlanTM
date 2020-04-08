@@ -9,11 +9,11 @@ using AlanTMMVC.Models;
 
 namespace AlanTMMVC.Controllers
 {
-    public class HomeController : Controller
+    public class ProjectsController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ProjectsController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
@@ -34,26 +34,9 @@ namespace AlanTMMVC.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
-        public int Add(int number1, int number2)
-        {
-            return number1 + number2;
-        }
-
-        public ActionResult Bio()
-        {
-            return PartialView("Bio");
-        }
-
         public ActionResult Projects()
         {
             return PartialView("Projects");
-        }
-
-        public ActionResult ProjectCards(string cardName)
-        {
-            
-            return PartialView("Project-Card-" + cardName);
         }
     }
 }

@@ -1,0 +1,12 @@
+﻿.col-container {
+    $root: &;
+    display: flex;
+    flex-direction: column;
+}
+
+.col {
+    $root: &;
+    & + & {
+        margin-top: (15/16) * 1em;
+    }
+}
