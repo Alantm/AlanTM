@@ -2,11 +2,53 @@
     $root: &;
     display: flex;
     flex-direction: column;
+    width: 100%;
+
+    @media all and (min-width: 48em) { //768px
+        flex-direction: row;
+    }
+
+    @media all and (min-width: 64em) { //1024px
+
+    }
 }
 
 .col {
     $root: &;
+    flex-basis: 100%;
+
     & + & {
-        margin-top: (15/16) * 1em;
+        margin-top: (15/16) * 1rem;
+    }
+
+    @media all and (min-width: 48em) { //768px
+        & + & {
+            margin-top: 0;
+            margin-left: (25/16) * 1rem;
+        }
+
+        &--w-25 {
+            flex-basis: 25%;
+        }
+
+        &--w-33 {
+            flex-basis: 33.33%;
+        }
+
+        &--w-50 {
+            flex-basis: 50%;
+        }
+
+        &--w-66 {
+            flex-basis: 66%;
+        }
+
+        &--w-75 {
+            flex-basis: 75%;
+        }
+
+        &--w-100 {
+            flex-basis: 100%;
+        }
     }
 }

@@ -1,0 +1,29 @@
+﻿.button {
+    $root: &;
+    display: inline-block;
+    transition: all .2s linear;
+    box-sizing: border-box;
+    font-weight: 900;
+    padding: ((10/16) * 1rem) ((15/16) * 1rem);
+    border: ((3/16) * 1rem) solid $color-dark;
+    letter-spacing: .1em;
+    text-align: center;
+    background-color: $color-light;
+    color: $color-dark;
+
+    &:hover, &:focus {
+        background-color: $color-dark;
+        color: $color-light;
+    }
+
+    &--filled {
+        background-color: $color-dark;
+        color: $color-light;
+        border-color: $color-dark;
+
+        &:hover, &:focus {
+            background-color: $color-light;
+            color: $color-dark;
+        }
+    }
+}

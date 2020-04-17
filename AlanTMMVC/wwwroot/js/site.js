@@ -53,8 +53,10 @@ function loadModule(ele, call) {
 function initLazyLoad() {
     window.lazyLoadInstance = new LazyLoad({
         elements_selector: ".lazy",
+        load_delay: 300,
         callback_enter: (function (el) {
-            if (el.hasAttribute('data-cb')) {
+            console.log(el);
+            if (el.hasAttribute('data-cb') && el.getAttribute('data-cb') != 'null') {
                 var param1 = el.getAttribute('data-param1');
                 var param2 = el.getAttribute('data-param2');
                 if (param1 === 'this') {
@@ -82,6 +84,7 @@ function initLazyLoad() {
             }
         }),
         callback_loaded: (function (el) {
+            //console.log(el)
         })
         // ... more custom settings?
     });
@@ -93,7 +96,7 @@ function initLazyLoad() {
             window.lazyLoadInstance = event.detail.instance;
         },
     );
-        false
+    false
 }
 
 function loadBio(ele) {
@@ -117,15 +120,115 @@ function loadProjectCards(ele) {
         },
         function (data) {
             ele.innerHTML = data;
+            window.lazyLoadInstance.update();
             cardIndexCounter++;
         }
     );
 }
 
+function loadProjectCard(ele, projectName) {
+    //console.log('loadProjectCard');
+    postAjax('/home/projectcard',
+        {
+            cardName: projectName
+        },
+        function (data) {
+            ele.innerHTML = data;
+            window.lazyLoadInstance.update();
+            cardIndexCounter++;
+        }
+    );
+}
+
+function checkHeaderAttachment() {
+    var header = document.querySelectorAll('header')[0];
+    var headerSpacing = document.querySelectorAll('.header__spacing')[0];
+    if (header != undefined && headerSpacing != undefined) {
+        var scrolled = document.scrollingElement.scrollTop;
+        var position = header.offsetTop;
+        var headerHeight = header.offsetHeight;
+        
+        if (scrolled > position) {
+            if (!hasClass(header, 'header--fixed')) {
+                headerSpacing.style.height = headerHeight + 'px';
+            }
+            addClass(header, 'header--fixed');
+        }
+        else {
+            //headerSpacing.style.height = '0px';
+            removeClass(header, 'header--fixed');
+            //headerHeight = header.offsetHeight;
+            //headerSpacing.style.height = headerHeight + 'px';
+            setTimeout(function () {
+                headerHeight = header.offsetHeight;
+                headerSpacing.style.height = headerHeight + 'px';
+            }, 200);
+        }
+    }
+}
+
+function checkToShowFooter() {
+    var header = document.querySelectorAll('header')[0];
+    var footer = document.querySelectorAll('footer')[0];
+    if (header != undefined && footer != undefined) {
+        if (hasClass(header, 'header--fixed')) {
+            addClass(footer, 'footer--show');
+        }
+        else {
+            removeClass(footer, 'footer--show');
+        }
+    }
+}
+
+var resizeTimer;
+function initResizeListeners() {
+    window.addEventListener('resize', function (event) {
+        if (resizeTimer) {
+            window.cancelAnimationFrame(resizeTimer);
+        }
+        timeout = window.requestAnimationFrame(function () {
+            resizeProcesses();
+        });
+    }, false);
+}
+
+var scrollTimer
+function initScrollListeners() {
+    window.addEventListener('scroll', function (event) {
+        if (scrollTimer) {
+            window.cancelAnimationFrame(scrollTimer);
+        }
+        timeout = window.requestAnimationFrame(function () {
+            scrollProcesses();
+        });
+    }, false);
+}
+
+function resizeProcesses() {
+    //console.log('resizeProcesses');
+    window.lazyLoadInstance.update();
+    checkHeaderAttachment();
+    checkToShowFooter();
+}
+
+function scrollProcesses() {
+    //console.log('scrollProcesses');
+    window.lazyLoadInstance.update();
+    checkHeaderAttachment();
+    checkToShowFooter();
+}
+
 (function () {
     initLazyLoad();
     //loadBio();
+
+    initResizeListeners();
+    initScrollListeners();
+
     setTimeout(function () {
         window.lazyLoadInstance.update();
     }, 1000);
+    setTimeout(function () {
+        window.lazyLoadInstance.update();
+    }, 5000);
 })();

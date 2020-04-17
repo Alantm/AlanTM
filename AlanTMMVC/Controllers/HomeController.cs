@@ -50,6 +50,12 @@ namespace AlanTMMVC.Controllers
             return PartialView("Projects");
         }
 
+        public ActionResult ProjectCard(string cardName)
+        {
+
+            return PartialView("Project-Card-" + cardName);
+        }
+
         public ActionResult ProjectCards(string cardName)
         {
             

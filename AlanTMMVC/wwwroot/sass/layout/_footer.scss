@@ -1,0 +1,43 @@
+﻿.footer {
+    $root: &;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, 100%);
+    box-sizing: border-box;
+    padding: ((10/16) * 1rem) 5%;
+    background-color: $color-light;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1;
+
+    &--show {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .col-container {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .col {
+        flex-basis: auto;
+
+        + .col {
+            margin-top: 0;
+            margin-left: 0;
+        }
+    }
+
+    .icon-container {
+        display: block;
+        width: (25/16) * 1em;
+        color: $color-dark;
+    }
+
+    @media all and (min-width: 48em) {
+    }
+}

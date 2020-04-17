@@ -6,7 +6,7 @@
     text-transform: uppercase;
 
     & + * {
-        margin-top: (10/16) * 1em;
+        margin-top: (10/16) * 1rem;
     }
 
     &--h1 {
@@ -26,6 +26,18 @@
     }
 
     &--h5 {
+    }
+
+    @media all and (min-width: 48em) {
+        & + * {
+            margin-top: (15/16) * 1rem;
+        }
+    }
+
+    @media all and (min-width: 64em) {
+        & + * {
+            margin-top: (20/16) * 1rem;
+        }
     }
 }
 
@@ -59,7 +71,7 @@
     }
 
     * + * {
-        margin-top: (10/16) * 1em;
+        margin-top: (10/16) * 1rem;
     }
 
     .inline-list {
@@ -70,14 +82,14 @@
         }
 
         > * + * {
-            margin-left: (10/16) * 1em;
+            margin-left: (10/16) * 1rem;
             margin-top: 0;
         }
 
         .sep {
             display: block;
-            width: (5/16) * 1em;
-            height: (5/16) * 1em;
+            width: (7/16) * 1rem;
+            height: (7/16) * 1rem;
             background-color: $color-dark;
             //border-radius: 50%;
         }

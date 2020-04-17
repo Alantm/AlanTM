@@ -1,10 +1,69 @@
 ﻿* + .projects {
-    margin-top: (50/16) * 1em;
+    margin-top: (50/16) * 1rem;
 }
 
 .projects {
     $root: &;
+
+    .text-header {
+        & + * {
+            margin-top: (15/16) * 1rem;
+        }
+        &--h1 {
+            & + * {
+                margin-top: (40/16) * 1rem;
+            }
+        }
+    }
+
+    &__container {
+        width: 100%;
+    }
+
+    &__card {
+        position: relative;
+
+        .col {
+            &--01 {
+                flex-basis: 50%;
+            }
+
+            &--02 {
+                flex-basis: 50%;
+            }
+
+            &--03 {
+                flex-basis: auto;
+            }
+        }
+
+        &:hover, &:focus {
+            #{$root}__card-image {
+                filter: none;
+            }
+        }
+
+        & + & {
+            margin-top: (50/16) * 1rem;
+            &:before {
+                content: '';
+                position: absolute;
+                top: (25/16) * -1em;
+                left: 50%;
+                transform: translate(-50%,0);
+                width: 90%;
+                height: (2/16) * 1rem;
+                background-color: $color-dark;
+            }
+        }
+    }
+
     &__card-image {
-        display: block;
+        width: 100%;
+        height: 0;
+        padding-top: 56.25%;
+        box-sizing: border-box;
+        border: ((3/16) * 1rem) solid $color-dark;
+        filter: grayscale(100%);
     }
 }
